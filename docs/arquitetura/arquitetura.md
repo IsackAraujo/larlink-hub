@@ -62,8 +62,8 @@
 | Ambiente | Banco | Deploy |
 |---|---|---|
 | local | `supabase start` (Docker) | `pnpm dev` |
-| preview | projeto Supabase de staging | Vercel preview por PR |
-| produção | projeto Supabase `larlink-hub` (ref `kciosbjjoznhrrcgtiam`, sa-east-1) | Vercel `main` |
+| preview | mesmo projeto Supabase por enquanto (staging depois) | Vercel preview por PR |
+| produção | projeto Supabase `larlink-hub` (ref `kciosbjjoznhrrcgtiam`, sa-east-1) | Vercel `larlink-hub` → https://larlink-hub.vercel.app (branch `master`) |
 
 Migrations aplicadas via CLI (`supabase db push`) no CI ao fazer merge na `main`.
 

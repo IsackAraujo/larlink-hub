@@ -13,7 +13,7 @@ O cliente final da Larlink é a **imobiliária**. Todo lead neste sistema é uma
 - **Next.js** (App Router, Server Components, Server Actions) + **TypeScript strict**
 - **Tailwind CSS** com tokens do design system (`docs/design/design-system.md`)
 - **Supabase**: Auth (e-mail + magic link), Postgres, **RLS em todas as tabelas**, Edge Functions, pg_cron
-- **Vercel** para deploy (preview por PR, produção na `main`)
+- **Vercel** para deploy (preview por PR, produção na `master` → https://larlink-hub.vercel.app)
 - **PWA**: manifest + service worker + Web Push (VAPID)
 - **Claude API** (server-side apenas) para o botão "Pedir sugestão"
 - Testes: Vitest (unidade), Playwright (e2e, viewport mobile obrigatório)
