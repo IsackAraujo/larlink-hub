@@ -63,7 +63,7 @@
 |---|---|---|
 | local | `supabase start` (Docker) | `pnpm dev` |
 | preview | projeto Supabase de staging | Vercel preview por PR |
-| produção | projeto Supabase prod | Vercel `main` |
+| produção | projeto Supabase `larlink-hub` (ref `kciosbjjoznhrrcgtiam`, sa-east-1) | Vercel `main` |
 
 Migrations aplicadas via CLI (`supabase db push`) no CI ao fazer merge na `main`.
 

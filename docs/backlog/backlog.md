@@ -12,7 +12,7 @@ Cada item: ID, história, critérios de aceite. Atualize o status no mesmo PR qu
 | ID | Item | P | Status |
 |---|---|---|---|
 | F-01 | Criar projeto Next.js + TS strict + Tailwind + pnpm + ESLint/Prettier | P0 | 👀 |
-| F-02 | Projetos Supabase (staging, prod) + CLI local + types gerados | P0 | 📋 |
+| F-02 | Projetos Supabase (staging, prod) + CLI local + types gerados | P0 | 🔨 |
 | F-03 | Deploy Vercel com preview por PR e envs | P0 | 📋 |
 | F-04 | Tokens do design system + fundo "névoa com sol" + fontes Inter/JetBrains Mono | P0 | 👀 |
 | F-05 | Componentes base: Button, GlassCard, Sheet, BottomNav, StageBadge, ProgressRing, Stat, Toast, Input, Skeleton | P0 | 👀 |

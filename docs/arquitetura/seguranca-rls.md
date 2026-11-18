@@ -56,3 +56,7 @@ Em `supabase/tests/` (pgTAP) — para cada tabela nova:
 - Nada de dados pessoais além do contato comercial da imobiliária.
 - Backups: plano Supabase + export semanal de `leads` e `lead_eventos` (cron).
 - Headers de segurança no `next.config` (CSP, `X-Frame-Options`).
+
+## Avisos aceitos do Security Advisor
+
+O Supabase sinaliza `authenticated_security_definer_function_executable` para `papel_atual()`, `eh_gestao()` e `mover_etapa()`. É intencional: as duas primeiras são usadas pelas políticas RLS, e `mover_etapa()` é a única porta para mudar etapa — ela valida papel e dono do lead internamente. Nenhuma delas é executável por `anon` (migration `0002_endurece_funcoes.sql`).
