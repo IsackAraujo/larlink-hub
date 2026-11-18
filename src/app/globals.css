@@ -1,0 +1,180 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+@import "../styles/tokens.css";
+
+/* Tokens → utilitários Tailwind (bg-ink, text-text-2, rounded-lg, shadow-1…) */
+@theme inline {
+  --color-*: initial;
+  --color-ink: var(--ink);
+  --color-ink-deep: var(--ink-deep);
+  --color-sun: var(--sun);
+  --color-sun-soft: var(--sun-soft);
+  --color-mist-1: var(--mist-1);
+  --color-mist-2: var(--mist-2);
+  --color-ceramic: var(--ceramic);
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-glass-border: var(--glass-border);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-err: var(--err);
+  --color-info: var(--info);
+  --color-lavender: var(--lavender);
+  --color-white: #fff;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+  --radius-pill: var(--r-pill);
+
+  --shadow-1: var(--shadow-1), var(--highlight);
+  --shadow-2: var(--shadow-2), var(--highlight);
+
+  --ease-out: var(--ease-out);
+  --ease-spring: var(--ease-spring);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    min-height: 100dvh;
+    color: var(--text);
+    font-family: var(--font-sans);
+    background: linear-gradient(180deg, var(--mist-2) 0%, var(--mist-1) 100%) fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--sun);
+    outline-offset: 2px;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+}
+
+@layer components {
+  /* Superfície de vidro fosco — a "cerâmica com luz" */
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(var(--blur)) saturate(140%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-1), var(--highlight);
+  }
+  .glass-solid {
+    background: var(--glass-solid);
+    backdrop-filter: blur(32px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-2), var(--highlight);
+  }
+  .glass-strong {
+    background: var(--glass-strong);
+    backdrop-filter: blur(var(--blur)) saturate(150%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-2), var(--highlight);
+  }
+
+  /* Reflexo de sol que atravessa o espelho */
+  .sheen {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .sheen::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    left: -60%;
+    width: 40%;
+    transform: rotate(18deg);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.55),
+      rgba(240, 165, 39, 0.1),
+      transparent
+    );
+    animation: sheen var(--t-ambient) var(--ease-out) infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Shimmer cor névoa para skeletons */
+  .shimmer {
+    background: linear-gradient(90deg, var(--mist-1) 0%, var(--ceramic) 50%, var(--mist-1) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+
+  .enter {
+    animation: enter var(--t-base) var(--ease-out) both;
+  }
+}
+
+@keyframes sheen {
+  0%,
+  70% {
+    left: -60%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes sun-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-8vw, 6vh, 0) scale(1.08);
+  }
+}
+@keyframes cloud-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(10vw, -4vh, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheen::after {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
