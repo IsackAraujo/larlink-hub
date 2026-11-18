@@ -11,11 +11,11 @@ Cada item: ID, história, critérios de aceite. Atualize o status no mesmo PR qu
 
 | ID | Item | P | Status |
 |---|---|---|---|
-| F-01 | Criar projeto Next.js + TS strict + Tailwind + pnpm + ESLint/Prettier | P0 | 📋 |
-| F-02 | Projetos Supabase (staging, prod) + CLI local + types gerados | P0 | 📋 |
-| F-03 | Deploy Vercel com preview por PR e envs | P0 | 📋 |
-| F-04 | Tokens do design system + fundo "névoa com sol" + fontes Inter/JetBrains Mono | P0 | 📋 |
-| F-05 | Componentes base: Button, GlassCard, Sheet, BottomNav, StageBadge, ProgressRing, Stat, Toast, Input, Skeleton | P0 | 📋 |
+| F-01 | Criar projeto Next.js + TS strict + Tailwind + pnpm + ESLint/Prettier | P0 | 👀 |
+| F-02 | Projetos Supabase (staging, prod) + CLI local + types gerados | P0 | 🔨 |
+| F-03 | Deploy Vercel com preview por PR e envs | P0 | 👀 |
+| F-04 | Tokens do design system + fundo "névoa com sol" + fontes Inter/JetBrains Mono | P0 | 👀 |
+| F-05 | Componentes base: Button, GlassCard, Sheet, BottomNav, StageBadge, ProgressRing, Stat, Toast, Input, Skeleton | P0 | 👀 |
 | F-06 | CI: lint, typecheck, vitest, playwright (mobile+desktop), migrations | P0 | 📋 |
 
 **F-04 aceite:** tela de exemplo `/dev/ui` mostrando todos os tokens e componentes; animações param com reduced-motion.
@@ -24,10 +24,10 @@ Cada item: ID, história, critérios de aceite. Atualize o status no mesmo PR qu
 
 | ID | Item | P | Status |
 |---|---|---|---|
-| A-01 | Login por magic link, cadastro público desligado, convite pela gestão | P0 | 📋 |
-| A-02 | Tabela `profiles` + papel `gestao`/`sdr` + `papel_atual()` | P0 | 📋 |
-| A-03 | Middleware: sdr → `/hoje`, gestao → `/painel`; rotas bloqueadas por papel | P0 | 📋 |
-| A-04 | Seed dos 4 usuários (Isack, Pedro, Alexandre = gestao; Luiz = sdr) | P0 | 📋 |
+| A-01 | Login por magic link, cadastro público desligado, convite pela gestão | P0 | 👀 |
+| A-02 | Tabela `profiles` + papel `gestao`/`sdr` + `papel_atual()` | P0 | 👀 |
+| A-03 | Middleware: sdr → `/hoje`, gestao → `/painel`; rotas bloqueadas por papel | P0 | 👀 |
+| A-04 | Seed dos 4 usuários (Isack, Pedro, Alexandre = gestao; Luiz = sdr) | P0 | 👀 |
 
 **A-03 aceite:** Luiz acessando `/painel` ou `/clientes` é redirecionado; teste e2e cobre.
 

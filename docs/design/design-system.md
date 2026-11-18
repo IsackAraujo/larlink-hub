@@ -16,6 +16,7 @@ Implementação dos tokens em `src/styles/tokens.css` + `tailwind.config.ts`. Co
   --ceramic: #FBFBFA;
   --glass: rgba(255,255,255,.62);
   --glass-strong: rgba(255,255,255,.78);
+  --glass-solid: rgba(251,251,250,.9);  /* BottomNav e Sheet: legível sobre conteúdo */
   --glass-border: rgba(255,255,255,.7);
   --line: rgba(29,44,66,.08);
   --text: #1D2C42;
