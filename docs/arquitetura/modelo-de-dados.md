@@ -21,8 +21,11 @@ conteudos (marketing)   feedbacks (produto)   decisoes (gestão)
 
 ## Tabelas
 
+### `convites`
+Lista de quem pode entrar: `email` (minúsculo), `nome`, `papel`. Só gestão lê/edita.
+
 ### `profiles`
-Espelho de `auth.users`. `papel` (`gestao` | `sdr`), `nome`, `avatar_url`, `ativo`.
+Espelho de `auth.users`, criado automaticamente pelo trigger `criar_perfil_convidado` a partir de `convites`. `papel` (`gestao` | `sdr`), `nome`, `avatar_url`, `ativo`.
 
 ### `leads`
 Uma imobiliária no funil.

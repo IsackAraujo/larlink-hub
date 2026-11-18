@@ -24,10 +24,10 @@ Cada item: ID, história, critérios de aceite. Atualize o status no mesmo PR qu
 
 | ID | Item | P | Status |
 |---|---|---|---|
-| A-01 | Login por magic link, cadastro público desligado, convite pela gestão | P0 | 📋 |
-| A-02 | Tabela `profiles` + papel `gestao`/`sdr` + `papel_atual()` | P0 | 📋 |
-| A-03 | Middleware: sdr → `/hoje`, gestao → `/painel`; rotas bloqueadas por papel | P0 | 📋 |
-| A-04 | Seed dos 4 usuários (Isack, Pedro, Alexandre = gestao; Luiz = sdr) | P0 | 📋 |
+| A-01 | Login por magic link, cadastro público desligado, convite pela gestão | P0 | 👀 |
+| A-02 | Tabela `profiles` + papel `gestao`/`sdr` + `papel_atual()` | P0 | 👀 |
+| A-03 | Middleware: sdr → `/hoje`, gestao → `/painel`; rotas bloqueadas por papel | P0 | 👀 |
+| A-04 | Seed dos 4 usuários (Isack, Pedro, Alexandre = gestao; Luiz = sdr) | P0 | 👀 |
 
 **A-03 aceite:** Luiz acessando `/painel` ou `/clientes` é redirecionado; teste e2e cobre.
 

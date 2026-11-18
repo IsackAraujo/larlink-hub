@@ -6,7 +6,7 @@
 2. **Papel lido do banco**, nunca do client: função `public.papel_atual()` (security definer, `stable`) consulta `profiles`.
 3. **Mutações sensíveis por RPC** (`mover_etapa`, `registrar_objecao`, `concluir_tarefa`) com `security definer` + checagem explícita de papel e dono. `leads.etapa` não é atualizável diretamente (policy de update exclui a coluna via trigger de guarda).
 4. **Service role só em Edge Functions/cron** — nunca no Next.js de forma exposta.
-5. **Cadastro fechado** — signup público desabilitado no Supabase Auth; apenas convites.
+5. **Cadastro fechado** — trigger `criar_perfil_convidado` em `auth.users` aborta a criação de qualquer e-mail fora de `convites` (migration 0003).
 
 ## Funções auxiliares
 
@@ -24,6 +24,7 @@ language sql stable as $$ select public.papel_atual() = 'gestao' $$;
 
 | Tabela | gestao | sdr |
 |---|---|---|
+| convites | all | **nada** |
 | profiles | select all; update all | select all (nome/avatar); update próprio |
 | leads | all | select/update onde `responsavel_id = auth.uid()`; insert não |
 | lead_eventos | select all; insert via RPC | select dos seus leads; insert via RPC |
