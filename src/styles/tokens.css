@@ -1,0 +1,24 @@
+/* Tema Editorial — rotas (gestao). Spec: docs/design/tema-editorial-gestao.md (ADR 0003). */
+:root {
+  /* compartilhados com o tema Vidro */
+  --sun: #F0A527;
+  --ok: #3F8F6B; --warn: #D98E1F; --err: #C2514A; --info: #4A6FA5;
+}
+
+[data-theme="editorial"] {
+  --paper: #FFFFFF;
+  --paper-2: #F4F4F2;
+  --ink-print: #111111;
+  --ink-muted: #555555;
+  --rule-soft: #CCCCCC;
+  --terminal-bg: #000000;
+  --terminal-fg: #F2F2F2;
+  --shadow-hard: 2px 2px 0 var(--ink-print);
+  --r-ed: 2px;
+  --font-display: "Newsreader", "Libre Caslon Text", Georgia, serif;
+  --font-label: "JetBrains Mono", ui-monospace, monospace;
+
+  background: var(--paper);
+  color: var(--ink-print);
+  font-family: var(--font-display);
+}

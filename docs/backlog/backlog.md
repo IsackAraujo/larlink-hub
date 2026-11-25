@@ -11,7 +11,7 @@ Cada item: ID, história, critérios de aceite. Atualize o status no mesmo PR qu
 
 | ID | Item | P | Status |
 |---|---|---|---|
-| F-01 | Criar projeto Next.js + TS strict + Tailwind + pnpm + ESLint/Prettier | P0 | 📋 |
+| F-01 | Criar projeto Next.js + TS strict + Tailwind + pnpm + ESLint/Prettier | P0 | 🔨 (falta ESLint/Prettier) |
 | F-02 | Projetos Supabase (staging, prod) + CLI local + types gerados | P0 | 📋 |
 | F-03 | Deploy Vercel com preview por PR e envs | P0 | 📋 |
 | F-04 | Tokens do design system + fundo "névoa com sol" + fontes Inter/JetBrains Mono | P0 | 📋 |
@@ -99,7 +99,7 @@ Cada item: ID, história, critérios de aceite. Atualize o status no mesmo PR qu
 | G-01 | **Pipeline completo**: kanban 6 etapas + perdidos, tabela com filtros | P0 | 📋 |
 | G-02 | **Fila do closer**: leads `com_isack` ordenados por tempo de espera | P0 | 📋 |
 | G-03 | Mover para reunião/contrato (data, tipo, plano, valor) | P0 | 📋 |
-| G-04 | **Painel**: funil atual, conversão por etapa, abordagens/dia do SDR, taxa de resposta, top objeções | P0 | 📋 |
+| G-04 | **Painel**: funil atual, conversão por etapa, abordagens/dia do SDR, taxa de resposta, top objeções | P0 | 🔨 (layout Editorial pronto com dados de exemplo; falta ligar no Supabase) |
 | G-05 | Visão "como o Luiz vê" (`/hoje?como=`) | P1 | 📋 |
 | G-06 | Configurar meta diária e cadências | P1 | 📋 |
 | G-07 | Tempo médio por etapa + leads parados (alerta) | P1 | 📋 |
