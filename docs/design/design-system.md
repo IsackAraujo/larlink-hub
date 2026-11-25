@@ -1,5 +1,7 @@
 # Design system
 
+> Este é o tema **Vidro** (rotas `(sdr)`). A área de gestão usa o tema **Editorial**: `tema-editorial-gestao.md` (ADR 0003).
+
 Implementação dos tokens em `src/styles/tokens.css` + `tailwind.config.ts`. Componentes base em `src/components/ui/`.
 
 ## Tokens

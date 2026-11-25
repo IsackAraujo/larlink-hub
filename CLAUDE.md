@@ -58,7 +58,7 @@ docs/   .claude/
 1. **Funil é lei.** Etapas, transições e permissões vêm de `docs/produto/funil-e-regras.md`. Mudança de etapa só pela RPC `mover_etapa()` — nunca `update` direto em `leads.etapa`.
 2. **RLS sempre.** Toda tabela nova nasce com RLS ligada e políticas para `gestao` e `sdr`. O SDR nunca lê `clientes`, `financeiro`, relatórios globais nem leads de outro responsável.
 3. **Mobile primeiro para rotas `(sdr)`.** Projetar em 390×844, alvos de toque ≥ 44px, ações principais no alcance do polegar (barra inferior / bottom sheet). Testar no Playwright com viewport de iPhone.
-4. **Identidade visual Larlink.** Usar apenas tokens de `docs/design/design-system.md`. Nada de cores soltas, nada de sombras pesadas, nada de visual "SaaS genérico". Vibe: vidro fosco, luz de sol num dia nublado, cerâmica clara.
+4. **Identidade visual Larlink, dois temas (ADR 0003).** Rotas `(sdr)`: tema **Vidro** (`docs/design/design-system.md`), com vidro fosco, luz de sol num dia nublado e cerâmica clara. Rotas `(gestao)`: tema **Editorial** (`docs/design/tema-editorial-gestao.md`), estilo jornal/terminal antigo, preto no branco, com filetes e sombra dura. Só tokens, nada de cores soltas, nada de visual "SaaS genérico".
 5. **Chaves só no servidor.** `ANTHROPIC_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `VAPID_PRIVATE_KEY` nunca vão para o client.
 6. **Interface em português do Brasil; código em inglês** (nomes de variáveis, funções, componentes). Exceção: nomes de tabelas/colunas e enums do banco ficam em português, como no schema (`leads.etapa`, `tarefas.vence_em`), para bater com a linguagem do negócio.
 7. **Respeitar `prefers-reduced-motion`.** Toda animação tem fallback estático.
@@ -91,5 +91,5 @@ docs/   .claude/
 
 - Produto: `docs/produto/visao.md`, `modulos.md`, `perfis-e-permissoes.md`, `funil-e-regras.md`
 - Arquitetura: `docs/arquitetura/arquitetura.md`, `modelo-de-dados.md`, `seguranca-rls.md`, `pwa-e-notificacoes.md`, `ia-sugestoes.md`
-- Design: `docs/design/identidade-visual.md`, `design-system.md`, `ux-sdr-mobile.md`
+- Design: `docs/design/identidade-visual.md`, `design-system.md` (tema Vidro/SDR), `tema-editorial-gestao.md` (tema Editorial/gestão), `ux-sdr-mobile.md`
 - Backlog: `docs/backlog/backlog.md`, `roadmap.md`

@@ -7,6 +7,8 @@ description: Como construir UI no padrão visual da Larlink (vidro fosco, luz de
 
 Referência completa: `docs/design/design-system.md` e `docs/design/identidade-visual.md`. Este é o resumo operacional.
 
+> **Dois temas (ADR 0003).** As regras abaixo são do tema **Vidro**, usado nas rotas `(sdr)`. Nas rotas `(gestao)`, use o tema **Editorial** de `docs/design/tema-editorial-gestao.md`: `PaperPanel` no lugar de `GlassCard`, sem vidro, sem sheen e sem sol de fundo.
+
 ## Regras rápidas
 1. **Cores só por token**: `--ink`, `--ink-deep`, `--sun`, `--mist-1/2`, `--ceramic`, `--glass*`, `--text*`, estados. Em Tailwind: `bg-ink`, `text-text-2`, `bg-glass` etc. Nunca hex solto.
 2. **Superfícies = `GlassCard`**. Não crie `div` com fundo branco e sombra própria.

@@ -19,3 +19,4 @@ Modelo:
 |---|---|
 | 0001 | Stack Next.js + Supabase + Vercel, entregue como PWA |
 | 0002 | Dois perfis (gestao, sdr) com logins individuais |
+| 0003 | Dois temas: editorial retrô na gestão, vidro moderno no SDR |
