@@ -3,111 +3,93 @@
 import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
 import { Input } from "@/components/ui/Input";
+import { Segmented } from "@/components/ui/Segmented";
 import { createClient } from "@/lib/supabase/client";
-import { ArrowLeft, MailCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
-type Step = "email" | "code";
+type Mode = "entrar" | "primeiro";
+
+const MIN_PASSWORD = 8;
 
 function friendlyError(message: string) {
   const m = message.toLowerCase();
   if (m.includes("database error") || m.includes("não autorizado") || m.includes("signups not allowed"))
     return "Esse e-mail não tem acesso ao Larlink Hub. Fale com o Isack.";
+  if (m.includes("already registered") || m.includes("already been registered"))
+    return "Você já criou sua senha. Use a aba Entrar.";
+  if (m.includes("invalid login credentials")) return "E-mail ou senha incorretos.";
+  if (m.includes("email not confirmed"))
+    return "Conta criada, mas falta liberar o acesso sem confirmação de e-mail. Fale com o Isack.";
+  if (m.includes("password")) return `A senha precisa ter pelo menos ${MIN_PASSWORD} caracteres.`;
   if (m.includes("rate limit") || m.includes("security purposes"))
     return "Muitas tentativas seguidas. Espere um minuto e tente de novo.";
-  if (m.includes("expired") || m.includes("invalid"))
-    return "Código inválido ou expirado. Peça um novo.";
   return "Não deu certo agora. Tente de novo em instantes.";
 }
 
 export function LoginForm({ initialError }: { initialError?: string }) {
   const router = useRouter();
-  const [step, setStep] = useState<Step>("email");
+  const [mode, setMode] = useState<Mode>("entrar");
   const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(initialError);
 
-  async function sendEmail(e: FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setError(undefined);
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim().toLowerCase(),
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
-    });
-    setLoading(false);
-    if (error) return setError(friendlyError(error.message));
-    setStep("code");
-  }
+  const isFirst = mode === "primeiro";
 
-  async function verifyCode(e: FormEvent) {
+  async function submit(e: FormEvent) {
     e.preventDefault();
-    setLoading(true);
     setError(undefined);
+    if (isFirst && password !== confirm) return setError("As duas senhas não são iguais.");
+    if (isFirst && password.length < MIN_PASSWORD)
+      return setError(`A senha precisa ter pelo menos ${MIN_PASSWORD} caracteres.`);
+
+    setLoading(true);
     const supabase = createClient();
-    const { error } = await supabase.auth.verifyOtp({
-      email: email.trim().toLowerCase(),
-      token: code.trim(),
-      type: "email",
-    });
-    if (error) {
-      setLoading(false);
-      return setError(friendlyError(error.message));
+    const credentials = { email: email.trim().toLowerCase(), password };
+
+    if (isFirst) {
+      const { data, error } = await supabase.auth.signUp(credentials);
+      if (error) {
+        setLoading(false);
+        return setError(friendlyError(error.message));
+      }
+      if (!data.session) {
+        // Supabase ainda exige confirmação por e-mail: tenta entrar direto para mostrar a mensagem certa.
+        const { error: signInError } = await supabase.auth.signInWithPassword(credentials);
+        if (signInError) {
+          setLoading(false);
+          return setError(friendlyError(signInError.message));
+        }
+      }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword(credentials);
+      if (error) {
+        setLoading(false);
+        return setError(friendlyError(error.message));
+      }
     }
+
     router.replace("/");
     router.refresh();
   }
 
-  if (step === "code") {
-    return (
-      <form onSubmit={verifyCode} className="flex flex-col gap-5">
-        <div className="flex items-start gap-3">
-          <span className="flex size-11 shrink-0 items-center justify-center rounded-pill bg-sun-soft text-sun">
-            <MailCheck size={22} strokeWidth={1.75} />
-          </span>
-          <p className="text-[15px] text-text-2">
-            Mandamos um e-mail para <strong className="font-semibold text-text">{email}</strong>. Toque no
-            link ou digite o código aqui.
-          </p>
-        </div>
-        <Field label="Código" error={error}>
-          <Input
-            inputMode="numeric"
-            autoComplete="one-time-code"
-            pattern="[0-9]*"
-            maxLength={8}
-            placeholder="000000"
-            value={code}
-            onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-            className="text-center font-mono text-xl tracking-[0.4em]"
-            autoFocus
-            required
-          />
-        </Field>
-        <Button type="submit" block disabled={loading || code.length < 6}>
-          {loading ? "Entrando…" : "Entrar"}
-        </Button>
-        <Button
-          variant="ghost"
-          block
-          onClick={() => {
-            setStep("email");
-            setCode("");
-            setError(undefined);
-          }}
-        >
-          <ArrowLeft size={16} strokeWidth={1.75} /> Usar outro e-mail
-        </Button>
-      </form>
-    );
-  }
-
   return (
-    <form onSubmit={sendEmail} className="flex flex-col gap-5">
-      <Field label="Seu e-mail" error={error}>
+    <form onSubmit={submit} className="flex flex-col gap-5">
+      <Segmented
+        label="Como entrar"
+        value={mode}
+        onChange={(v) => {
+          setMode(v);
+          setError(undefined);
+        }}
+        options={[
+          { value: "entrar", label: "Entrar" },
+          { value: "primeiro", label: "Primeiro acesso" },
+        ]}
+      />
+      <Field label="Seu e-mail">
         <Input
           type="email"
           inputMode="email"
@@ -119,10 +101,38 @@ export function LoginForm({ initialError }: { initialError?: string }) {
           required
         />
       </Field>
-      <Button type="submit" block disabled={loading || !email}>
-        {loading ? "Enviando…" : "Receber link de acesso"}
+      <Field label={isFirst ? "Crie uma senha" : "Senha"} hint={isFirst ? `Mínimo de ${MIN_PASSWORD} caracteres.` : undefined}>
+        <Input
+          type="password"
+          autoComplete={isFirst ? "new-password" : "current-password"}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          minLength={isFirst ? MIN_PASSWORD : undefined}
+          required
+        />
+      </Field>
+      {isFirst && (
+        <Field label="Repita a senha">
+          <Input
+            type="password"
+            autoComplete="new-password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            required
+          />
+        </Field>
+      )}
+      {error && (
+        <p role="alert" className="text-sm text-err">
+          {error}
+        </p>
+      )}
+      <Button type="submit" block disabled={loading || !email || !password}>
+        {loading ? "Entrando…" : isFirst ? "Criar senha e entrar" : "Entrar"}
       </Button>
-      <p className="text-center text-sm text-text-3">Sem senha. Você recebe um link e um código no e-mail.</p>
+      <p className="text-center text-sm text-text-3">
+        {isFirst ? "Só e-mails convidados pela Larlink conseguem criar conta." : "Primeira vez aqui? Toque em Primeiro acesso."}
+      </p>
     </form>
   );
 }

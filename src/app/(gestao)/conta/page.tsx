@@ -1,3 +1,4 @@
+import { ChangePasswordForm } from "@/components/auth/ChangePasswordForm";
 import { signOut } from "@/app/auth/actions";
 import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
@@ -24,6 +25,7 @@ export default async function ContaPage() {
           <p className="mt-1 text-xs font-medium uppercase tracking-[0.06em] text-text-3">Gestão</p>
         </div>
       </GlassCard>
+      <ChangePasswordForm />
       <Link href="/dev/ui" className="px-1 text-sm text-ink underline-offset-4 hover:underline">
         Ver vitrine do design system
       </Link>
