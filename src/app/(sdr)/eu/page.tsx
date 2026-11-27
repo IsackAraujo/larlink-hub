@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Page } from "@/components/ui/Page";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { ChangePasswordForm } from "@/components/auth/ChangePasswordForm";
 import { signOut } from "@/app/auth/actions";
 import { getCurrentUser } from "@/lib/auth";
 import { LogOut } from "lucide-react";
@@ -25,6 +26,7 @@ export default async function EuPage() {
           </p>
         </div>
       </GlassCard>
+      <ChangePasswordForm />
       <p className="px-1 text-sm text-text-2">Pontos, sequência e conquistas chegam aqui em breve.</p>
       <form action={signOut}>
         <Button type="submit" variant="glass" block>
