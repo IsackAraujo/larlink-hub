@@ -25,7 +25,10 @@ export default async function LeadsPage() {
 
   return (
     <Page>
-      <PageHeader title="Leads" subtitle={`${leads.length} imobiliárias na sua lista`} />
+      <PageHeader
+        title="Leads"
+        subtitle={user.papel === "sdr" ? `${leads.length} imobiliárias na sua lista` : `${leads.length} imobiliárias na lista do Luiz`}
+      />
       <LeadList leads={leads} />
     </Page>
   );

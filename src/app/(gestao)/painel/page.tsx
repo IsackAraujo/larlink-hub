@@ -1,3 +1,4 @@
+import { ModuleGrid } from "@/components/nav/ModuleGrid";
 import { FunnelBar } from "@/components/ui/FunnelBar";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Page } from "@/components/ui/Page";
@@ -44,10 +45,13 @@ export default async function PainelPage() {
           <FunnelBar steps={ETAPAS.map((e) => ({ label: e.label, value: porEtapa.get(e.id) ?? 0 }))} />
           {(leads?.length ?? 0) === 0 && (
             <p className="mt-4 text-sm text-text-2">
-              O funil está vazio. Os leads entram aqui quando a importação do RD (MG-01) estiver pronta.
+              O funil está vazio. Importe uma lista de leads para o Luiz começar.
             </p>
           )}
         </GlassCard>
+      </Section>
+      <Section title="Módulos">
+        <ModuleGrid skip="/painel" />
       </Section>
     </Page>
   );

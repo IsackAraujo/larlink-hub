@@ -159,3 +159,12 @@ Cada item: ID, história, critérios de aceite. Atualize o status no mesmo PR qu
 - Registro de visitas presenciais com foto/fachada e geolocalização
 - Tema escuro "Noite"
 - Diagnóstico de Atendimento (cliente oculto) anexado ao lead
+
+## Beta (27/11/2026)
+
+| ID | Item | Status |
+|---|---|---|
+| B-01 | Telas beta: Comercial (visão do Luiz), Clientes (cadastro real), Marketing, Produto, Gestão (rituais editáveis), Agentes | 👀 |
+| B-02 | Gestão acessa a área do Luiz com faixa "Voltar ao Hub" | 👀 |
+| B-03 | App instalável (manifest + ícones) | 👀 |
+| B-04 | Catálogo de 18 agentes em `src/lib/agentes/catalogo.ts` (nenhum ligado ainda) | 📋 |
