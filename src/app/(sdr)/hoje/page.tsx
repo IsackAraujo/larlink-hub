@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Page } from "@/components/ui/Page";
@@ -10,6 +9,7 @@ import { createClient } from "@/lib/supabase/server";
 import { startOfTodaySP, endOfTodaySP, greetingSP } from "@/lib/time";
 import { Sun } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = { title: "Hoje" };
 
@@ -65,7 +65,11 @@ export default async function HojePage() {
             icon={Sun}
             title="Sem follow-ups hoje"
             description="Quando você registrar abordagens, os follow-ups aparecem aqui sozinhos."
-            action={<Button variant="sun" disabled>Abordar (em breve)</Button>}
+            action={
+              <Link href="/leads" className="inline-flex h-11 items-center rounded-pill bg-sun px-5 text-[15px] font-medium text-ink-deep shadow-1">
+                Abordar agora
+              </Link>
+            }
           />
         </GlassCard>
       </Section>
