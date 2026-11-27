@@ -4,12 +4,12 @@ Dois perfis (`papel` em `profiles`). Cada pessoa tem login próprio — "duas co
 
 | Pessoa | E-mail | Papel |
 |---|---|---|
-| Isack | a definir | `gestao` |
-| Pedro | a definir | `gestao` |
-| Alexandre | a definir | `gestao` |
-| Luiz | a definir | `sdr` |
+| Isack | isackaraujoc@gmail.com | `gestao` |
+| Pedro | plzorel@gmail.com | `gestao` |
+| Alexandre | alexandredecarli123@gmail.com | `gestao` |
+| Luiz | lzzoffh4x@gmail.com | `sdr` |
 
-Cadastro fechado: não existe "criar conta" público. Usuários são convidados pela Gestão (Supabase Auth invite / magic link).
+Cadastro fechado pela tabela `convites`: só e-mails cadastrados nela conseguem criar conta. No primeiro login (link mágico ou código de 6 dígitos), um trigger em `auth.users` cria o perfil com o nome e o papel do convite; qualquer outro e-mail tem a criação abortada. Para incluir alguém: inserir uma linha em `convites`.
 
 ## Matriz de acesso
 
